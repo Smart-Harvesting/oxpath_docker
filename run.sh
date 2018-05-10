@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Paths - Absolute paths are required
-INPUTFOLDER="/home/hendrik/Entwicklung/oxpath_docker/input"
-OUTPUTFOLDER="/home/hendrik/Entwicklung/oxpath_docker/output"
+ROOT=$(pwd)
+INPUTFOLDER="$ROOT/input"
+OUTPUTFOLDER="$ROOT/output"
 
 echo "[+] Check if oxpath_docker is running and stop it"
 docker stop oxpath || true && docker rm oxpath || true
