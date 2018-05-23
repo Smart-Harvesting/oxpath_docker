@@ -6,7 +6,7 @@ Author: Hendrik Adam hendrik.adam@smail.th-koeln.de
 
 Docker
 
-oxpath-cli.jar
+oxpath-cli.jar (Get the jar from http://www.oxpath.org and rename it)
 
 Specific folder structure:
 
