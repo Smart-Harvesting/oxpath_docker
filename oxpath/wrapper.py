@@ -8,7 +8,11 @@ import threading
 import subprocess
 import logging
 import hashlib
+import signal
 from shutil import move
+
+# We do not collect the signals from the child process, so we tell him that it can die after running
+signal.signal(signal.SIGCHLD, signal.SIG_IGN)
 
 files_processing = []
 logging.basicConfig(level=logging.DEBUG, format='[*] %(asctime)s - %(threadName)s-%(thread)s: %(message)s')
