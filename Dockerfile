@@ -22,7 +22,4 @@ RUN mkdir /usr/src/oxpath
 ADD ./oxpath /usr/src/oxpath
 WORKDIR /usr/src/oxpath
 
-# Set the enviroment
-ENV DISPLAY=:0
-
 CMD [ "python2.7", "./wrapper.py"]
