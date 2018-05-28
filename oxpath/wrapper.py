@@ -29,10 +29,17 @@ class Processor(threading.Thread):
     def run(self):
         logging.debug("Processing File: " + self._file)
         try:
-            subprocess.call("java -jar /usr/src/oxpath/oxpath-cli.jar -q /usr/src/oxpath/input/"+self._file+" -f xml -o /usr/src/oxpath/output/" + self._file +"_output.xml -xvfb -mval", shell=True)
+            if not os.path.isfile("/usr/src/oxpath/oxpath-cli.jar"):
+                logging.debug("OXpath missing - check your configuration")
+            else:
+                ret = subprocess.check_call("java -jar /usr/src/oxpath/oxpath-cli.jar -q /usr/src/oxpath/input/"+self._file+" -f xml -o /usr/src/oxpath/output/" + self._file +"_output.xml -xvfb -d 99 -mval", shell=True)
+                if ret:
+                    logging.debug("Returning: " + str(ret))
+                    logging.debug("Processing of file failed!")
+                else:
+                    move("/usr/src/oxpath/input/"+self._file, "/usr/src/oxpath/output/"+self._file)
+                    logging.debug("Finished processing - file moved")
             files_processing.remove(self._hash)
-            move("/usr/src/oxpath/input/"+self._file, "/usr/src/oxpath/processed/"+self._file)
-            logging.debug("Finished processing - file moved")
 
         except Exception as e:
             logging.debug("Error processing file " + str(e))

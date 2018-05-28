@@ -4,7 +4,6 @@
 ROOT=$(pwd)
 INPUTFOLDER="$ROOT/input"
 OUTPUTFOLDER="$ROOT/output"
-PROCESSEDFOLDER="$ROOT/output"
 
 IMAGENAME="oxpath"
 TAG="latest"
@@ -35,5 +34,4 @@ echo "[+] Starting the container"
 docker run -d -it --name=$CONTAINERNAME \
 -v $INPUTFOLDER:/usr/src/oxpath/input \
 -v $OUTPUTFOLDER:/usr/src/oxpath/output \
--v $PROCESSEDFOLDER:/usr/src/oxpath/processed \
 $IMAGENAME:$TAG
