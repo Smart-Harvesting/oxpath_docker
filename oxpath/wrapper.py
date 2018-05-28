@@ -8,6 +8,7 @@ import threading
 import subprocess
 import logging
 import hashlib
+from shutil import move
 
 files_processing = []
 logging.basicConfig(level=logging.DEBUG, format='[*] %(asctime)s - %(threadName)s-%(thread)s: %(message)s')
@@ -26,6 +27,9 @@ class Processor(threading.Thread):
         try:
             subprocess.call("java -jar /usr/src/oxpath/oxpath-cli.jar -q /usr/src/oxpath/input/"+self._file+" -f xml -o /usr/src/oxpath/output/" + self._file +"_output.xml -xvfb -mval", shell=True)
             files_processing.remove(self._hash)
+            move("/usr/src/oxpath/input/"+self._file, "/usr/src/oxpath/processed/"+self._file)
+            logging.debug("Finished processing - file moved")
+
         except Exception as e:
             logging.debug("Error processing file " + str(e))
 

@@ -4,13 +4,12 @@
 ROOT=$(pwd)
 INPUTFOLDER="$ROOT/input"
 OUTPUTFOLDER="$ROOT/output"
+PROCESSEDFOLDER="$ROOT/output"
 
 IMAGENAME="oxpath"
 TAG="latest"
 
 CONTAINERNAME="oxpath"
-
-
 
 echo "[+] Check if oxpath_docker is running and stop it"
 docker stop oxpath || true && docker rm oxpath || true
@@ -36,4 +35,5 @@ echo "[+] Starting the container"
 docker run -d -it --name=$CONTAINERNAME \
 -v $INPUTFOLDER:/usr/src/oxpath/input \
 -v $OUTPUTFOLDER:/usr/src/oxpath/output \
+-v $PROCESSEDFOLDER:/usr/src/oxpath/processed \
 $IMAGENAME:$TAG
