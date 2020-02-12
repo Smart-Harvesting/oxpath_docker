@@ -33,8 +33,8 @@ class Processor(threading.Thread):
                 logging.debug("OXpath missing - check your configuration")
             else:
                 ret = subprocess.check_call("java -jar /usr/src/oxpath/oxpath-cli.jar -q /usr/src/oxpath/input/"+self._file+" -f xml -o /usr/src/oxpath/output/" + self._file +"_output.xml -xvfb -d 99 -mval", shell=True)
+                logging.debug("Returning: " + str(ret))
                 if ret:
-                    logging.debug("Returning: " + str(ret))
                     logging.debug("Processing of file failed!")
                 else:
                     move("/usr/src/oxpath/input/"+self._file, "/usr/src/oxpath/output/"+self._file)
