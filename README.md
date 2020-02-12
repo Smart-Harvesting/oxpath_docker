@@ -1,18 +1,18 @@
-Oxpath Docker Container
+# Oxpath Docker Container
 
-Author: Hendrik Adam hendrik.adam@smail.th-koeln.de
+Author: Hendrik Adam
 
 ### Requirements:
 
 Docker
 
-oxpath-cli.jar (Get the jar from http://www.oxpath.org and rename it)
+`oxpath-cli.jar` (Get the jar from http://www.oxpath.org and rename it)
 
 Specific folder structure:
 
         root
             input
-                < oxpath rule files go here >
+                < oxpath script files go here >
             output
                 < expect output here >
             oxpath
@@ -26,27 +26,28 @@ Specific folder structure:
 
 ### Building:
 
-###### Linux / Mac:
+#### Linux / Mac:
 
-    Use run.sh to build and execute the Docker Container.
-    First edit the paths in the run.sh so they fit to your setup.
+Use `run.sh` to build and execute the Docker Container.
 
-###### Windows:
+First edit the paths in the `run.sh` so they fit to your setup.
 
-    For Windows execute the commands below from your powershell. Edit them appropriatly.
+#### Windows:
+
+For Windows execute the commands below from your powershell. Edit them appropriatly.
 
       docker build -t oxpath:latest PATHTOTHISFOLDER
 
 ### Running:
 
-###### Linux / Mac:
+#### Linux / Mac:
 
-    Use run.sh or the commands contained in run.sh
+Use `run.sh` or the commands contained in `run.sh`.
 
-###### Windows:
+#### Windows:
 
     docker run -d -it --name=oxpath -v PATHTOTHEINPUTFOLDER:/usr/src/oxpath/input -v PATHTOTHEOUTPUTFOLDER:/usr/src/oxpath/output oxpath:latest
 
 ### Usage:
 
-  Place your oxpath-rules in the input folder and wait for the magic to happen.... or the output to appear in the output folder
+Place your oxpath scripts into the input folder and wait for the magic to happen.... or the output to appear in the output folder.
